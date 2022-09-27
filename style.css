@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap");
 @import url('https://fonts.googleapis.com/css?family=Montserrat:600&display=swap');
+
 *,
 *::after,
 *::before {
@@ -7,17 +8,19 @@
     margin: 0;
     box-sizing: border-box;
 }
-:root{
-    --body-color:#ecf0f1;
+
+:root {
+    --body-color: #ecf0f1;
     --color-primary: #f4faf8;
     --color-accent: #02be86;
     --color-black: #051c15;
     --color-white: #fff;
     --color-light-green: #e1f9f1;
-    --header-color:#fafbfb;
+    --header-color: #fafbfb;
 }
+
 body {
-    display: grid;
+    display: flex;
     height: 200vh;
     font-family: "Roboto", sans-serif;
     font-weight: 700;
@@ -36,7 +39,6 @@ ul {
     text-decoration: none;
     justify-content: left;
     width: 180px;
-    /* height: 55px; */
     margin: .5rem 0 0 1rem;
 }
 
@@ -103,6 +105,7 @@ ul {
     background-color: var(--bc);
     animation: fade 300ms ease-in-out forwards;
 }
+
 @keyframes fade {
     0% {
         opacity: 0;
@@ -113,114 +116,168 @@ ul {
     }
 }
 
-span{
-  position: relative;
-  display: inline-flex;
-  width: 180px;
-  height: 55px;
-  margin: 0 15px;
-  perspective: 1000px;
-}
-span a{
-  font-size: 19px;
-  letter-spacing: 1px;
-  transform-style: preserve-3d;
-  transform: translateZ(-25px);
-  transition: transform .25s;
-  font-family: 'Montserrat', sans-serif;
-  
-}
-span a:before,
-span a:after{
-  position: absolute;
-  content: "Sign Up";
-  height: 50px;
-  width: 180px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 5px solid black;
-  box-sizing: border-box;
-  border-radius: 5px;
-}
-span a:before{
-  color: #fff;
-  background: #000;
-  transform: rotateY(0deg) translateZ(25px);
-}
-span a:after{
-  color: #000;
-  transform: rotateX(90deg) translateZ(25px);
-}
-span a:hover{
-  transform: translateZ(-25px) rotateX(-90deg);
-}
-.container {
-  display: flex;
-  width: 1040px;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-}
-.card {
-  margin: 10px;
-  background-color: #fff;
-  border-radius: 10px;
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
-  overflow: hidden;
-  width: 300px;
-}
-.card-header img {
-  width: 100%;
-  height: 200px;
-  object-fit: cover;
-}
-.card-body {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 20px;
-  min-height: 250px;
+span {
+    position: relative;
+    display: inline-flex;
+    width: 180px;
+    height: 55px;
+    margin: 0 15px;
+    perspective: 1000px;
 }
 
+span a {
+    font-size: 19px;
+    letter-spacing: 1px;
+    transform-style: preserve-3d;
+    transform: translateZ(-25px);
+    transition: transform .25s;
+    font-family: 'Montserrat', sans-serif;
+
+}
+
+span a:before,
+span a:after {
+    position: absolute;
+    content: "Sign Up";
+    height: 50px;
+    width: 180px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid black;
+    box-sizing: border-box;
+    border-radius: 5px;
+}
+
+span a:before {
+    color: #fff;
+    background: #000;
+    transform: rotateY(0deg) translateZ(25px);
+}
+
+span a:after {
+    color: #000;
+    transform: rotateX(90deg) translateZ(25px);
+}
+
+span a:hover {
+    transform: translateZ(-25px) rotateX(-90deg);
+}
+
+.container {
+    display: flex;
+    /* width: 1040px; */
+    flex-direction: row;
+}
+
+.card {
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    width: 400px;
+}
+
+.card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+
 .tag {
-  background: #cccccc;
-  border-radius: 50px;
-  font-size: 12px;
-  margin: 0;
-  color: #fff;
-  padding: 2px 10px;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-.tag-teal {
-  background-color: #47bcd4;
-}
-.tag-purple {
-  background-color: #5e76bf;
-}
-.tag-pink {
-  background-color: #cd5b9f;
+    background: #cccccc;
+    border-radius: 50px;
+    font-size: 12px;
+    margin: 0;
+    color: #fff;
+    padding: 2px 10px;
+    text-transform: uppercase;
+    cursor: pointer;
 }
 
 .card-body p {
-  font-size: 13px;
-  margin: 0 0 40px;
+    font-size: 13px;
+    margin: 0 0 40px;
+    white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
+
 .user {
-  display: flex;
-  margin-top: auto;
+    display: flex;
+    margin-top: auto;
 }
 
 .user img {
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  margin-right: 10px;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    margin-right: 10px;
 }
+
 .user-info h5 {
-  margin: 0;
+    margin: 0;
 }
+
 .user-info small {
-  color: #545d7a;
+    color: #545d7a;
+}
+.band {
+    width: 100%;
+    margin: 1rem auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    margin-top: 7rem;
+    justify-content: center;
+    align-items: center;
+}
+
+.card {
+    background: white;
+    text-decoration: none;
+    color: #444;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    min-height: 40%;
+    transition: all .1s ease-in;
+}
+
+.card:hover {
+    position: relative;
+    top: -5px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+}
+
+.card article {
+    padding: 20px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.card h1 {
+    font-size: 20px;
+    margin: 0;
+    color: #333;
+}
+
+
+.card span {
+    font-size: 12px;
+    font-weight: bold;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+    margin: 2em 0 0 0;
+}
+
+.card .thumb {
+    padding-bottom: 60%;
+    background-size: cover;
+    background-position: center center;
 }
