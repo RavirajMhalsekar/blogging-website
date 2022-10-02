@@ -1,11 +1,12 @@
 const items = document.querySelectorAll(".nav-item");
 const ind = document.querySelector(".indicator");
+const cards = document.querySelectorAll(".cards");
 const colorPallette = [
   { background: "#264653", foreground: "#ffffff" },
   { background: "#f4a261", foreground: "#000000" },
   { background: "#2a9d8f", foreground: "#ffffff" },
   { background: "#e9c46a", foreground: "#000000" },
-  { background: "#e76f51", foreground: "#ffffff" }
+  { background: "#e76f51", foreground: "#ffffff" },
 ];
 
 function handleIndicator(el) {
@@ -31,4 +32,13 @@ items.forEach((item, index) => {
   item.addEventListener("mouseleave", (e) => {
     e.target.style.color = "#000000";
   });
+});
+
+document.querySelectorAll(".projcard-description").forEach(function (box) {
+  $clamp(box, { clamp: 6 });
+});
+
+cards.addEventListener("click",(e)=>{
+  cards.forEach((cards) => cards.classList.remove("active-card"));
+  e.target.classList.add("active-card");
 });
