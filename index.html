@@ -16,9 +16,8 @@
         <div class="navbar">
           <ul class="main-nav">
             <li class="nav-item active">Home</li>
-            <li class="nav-item">Blog</li>
-            <li class="nav-item">About Us</li>
-            <li class="nav-item">Contact Us</li>
+            <li class="nav-item"><a href="aboutUs.html">About Us</a></li>
+            <li class="nav-item"><a href="contactUs.html">Contact Us</a></li>
           </ul>
           <div class="indicator"></div>
         </div>
@@ -30,14 +29,14 @@
 
     <!-- blog section start -->
     <!-- filter-links -->
-    <div class="filter-links left">
+    <div class="filter-links left hide">
       <div class="cards-list">
         <div class="card" name="all">
           <div class="card_image">
             <img src="images/allpost.jpg" />
           </div>
           <div class="card_title title-white" >
-            <p class="active-card" onclick="filterBlog('all')">All Posts</p>
+            <p class="active-card" onclick="filterBlog('all',0)">All Posts</p>
           </div>
         </div>
 
@@ -45,7 +44,7 @@
           <div class="card_image">
             <img  src="/images/food.jpg" /></div>
           <div class="card_title title-white">
-            <p onclick="filterBlog('food')">Food</p>
+            <p onclick="filterBlog('food',1)">Food</p>
           </div>
         </div>
 
@@ -54,7 +53,7 @@
             <img src="/images/travel.jpg" />
           </div>
           <div class="card_title title-white">
-            <p onclick="filterBlog('travel')">Travel</p>
+            <p onclick="filterBlog('travel',2)">Travel</p>
           </div>
         </div>
 
@@ -63,7 +62,7 @@
             <img src="images/tech.jpg" />
           </div>
           <div class="card_title title-white">
-            <p onclick="filterBlog('tech')">Technology</p>
+            <p onclick="filterBlog('tech',3)">Technology</p>
           </div>
         </div>
 
@@ -72,13 +71,13 @@
             <img src="images/entertainment.png" />
           </div>
           <div class="card_title title-white">
-            <p onclick="filterBlog('entertainment')">Entertainment</p>
+            <p onclick="filterBlog('entertainment',4)">Entertainment</p>
           </div>
         </div>
       </div>
     </div>
     <!-- filter-links -->
-    <div class="projcard-container right">
+    <div class="projcard-container right hide">
       <div class="projcard projcard-blue " data-category="tech">
         <div class="projcard-innerbox">
           <img
@@ -183,9 +182,14 @@
       </div>
     </div>
     <!-- blog section end -->
+
     <!-- about section start -->
+    
+     
     <!-- about section end -->
     <!-- footer section start -->
+      <!-- Site footer -->
+      
     <!-- footer section end -->
 
     <script src="/script.js"></script>

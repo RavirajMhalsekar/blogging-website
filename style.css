@@ -54,7 +54,7 @@ ul {
     margin: 1rem 0 0 1.5rem;
     border-radius: 1rem;
     z-index: 100;
-    box-shadow: 0 2px 2px -2px rgba(0,0,0,.2);
+    box-shadow: 0 2px 2px -2px rgba(0, 0, 0, .2);
 }
 
 .navbar {
@@ -62,7 +62,7 @@ ul {
     cursor: pointer;
     display: flex;
     transition: all 0.3s ease-in-out;
-    
+
 }
 
 .main-nav {
@@ -76,6 +76,10 @@ ul {
     transition: all 0.3s ease-in-out;
     z-index: 10;
     white-space: nowrap;
+}
+.nav-item a{
+    text-decoration: none;
+    color: #000;
 }
 
 .indicator {
@@ -223,12 +227,15 @@ span a:hover {
     box-shadow: 0 4px 21px -12px rgba(0, 0, 0, .66);
     transition: box-shadow 0.2s ease, transform 0.2s ease;
 }
-.projcard.hide{
+
+.projcard.hide {
     display: none;
 }
-.projcard.active{
+
+.projcard.active {
     display: block;
 }
+
 .projcard:hover {
     box-shadow: 0 34px 32px -33px rgba(0, 0, 0, .18);
     transform: translate(0px, -3px);
@@ -466,6 +473,7 @@ span a:hover {
     cursor: pointer;
     transition: 0.4s;
     justify-content: left;
+    box-shadow: 6px 8px 21px -3px rgba(0, 0, 0, .66);
 }
 
 .card .card_image {
@@ -500,17 +508,18 @@ span a:hover {
     /* width: 330px;
     height: 110px;    
     font-size: 50px; */
-    
+
 }
+
 .card:active {
     transform: scale(1.1, 1.1);
-  }
+}
 
 .title-white {
     color: var(--body-color);
 }
 
-.active-card{
+.active-card {
     transform: scale(1.1, 1.1);
     color: white;
     text-decoration: underline;
@@ -530,3 +539,7 @@ span a:hover {
         flex-direction: column;
     }
 }
+
+
+/* about */
+

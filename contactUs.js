@@ -1,6 +1,5 @@
 const items = document.querySelectorAll(".nav-item");
 const ind = document.querySelector(".indicator");
-const cardsList = document.querySelectorAll(".card p");
 const colorPallette = [
   { background: "#264653", foreground: "#ffffff" },
   { background: "#f4a261", foreground: "#000000" },
@@ -33,32 +32,3 @@ items.forEach((item, index) => {
     e.target.style.color = "#000000";
   });
 });
-
-cardsList.forEach((item)=>{
-  item.addEventListener("click",(e)=>{
-    cardsList.forEach((item)=> item.classList.remove("active-card"));
-    e.target.classList.add("active-card");
-  });
-});
-var key = 'all';
-filterBlog(key,0);
-
-function filterBlog(key,pos){
-  const blogs = document.querySelectorAll(".projcard");
-  // const cards = document.querySelectorAll("card");
-  // cards.forEach((card)=> card.classList.remove("active-card"));
-  // cards[pos].classList.add("active-card");
-  blogs.forEach((item) =>{ 
-    item.classList.remove("active");
-    item.classList.add("hide");
-  });
-  blogs.forEach((blog)=>{
-    var dataCategory = blog.getAttribute('data-category');
-    // console.log("data = " + dataCategory);
-    if(dataCategory == key || key == 'all'){
-      blog.classList.remove("hide");
-      blog.classList.add("active");
-    }
-  });
-  
-}
