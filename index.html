@@ -22,100 +22,162 @@
           </ul>
           <div class="indicator"></div>
         </div>
-        
+
         <span><a href="login.html"></a></span>
       </div>
     </header>
     <!-- navbar section end -->
 
     <!-- blog section start -->
-    
+    <!-- filter-links -->
     <div class="filter-links left">
       <div class="cards-list">
-  
-        <div class="card">
-          <div class="card_image"> <img src="https://i.redd.it/b3esnz5ra34y.jpg" /> </div>
-          <div class="card_title title-white">
-            <p>All posts</p>
+        <div class="card" name="all">
+          <div class="card_image">
+            <img src="images/allpost.jpg" />
+          </div>
+          <div class="card_title title-white" >
+            <p class="active-card" onclick="filterBlog('all')">All Posts</p>
           </div>
         </div>
-        <div class="card">
-          <div class="card_image"> <img src="/images/food.jpg" /> </div>
+
+        <div class="card" name="food">
+          <div class="card_image">
+            <img  src="/images/food.jpg" /></div>
           <div class="card_title title-white">
-            <p>Food</p>
+            <p onclick="filterBlog('food')">Food</p>
           </div>
         </div>
-          <div class="card">
+
+        <div class="card" name="travel">
           <div class="card_image">
             <img src="/images/travel.jpg" />
-            </div>
+          </div>
           <div class="card_title title-white">
-            <p>Travel</p>
+            <p onclick="filterBlog('travel')">Travel</p>
           </div>
         </div>
-        
-        <div class="card">
+
+        <div class="card" name="tech">
           <div class="card_image">
-            <img src="/images/tech.jpg" />
+            <img src="images/tech.jpg" />
           </div>
           <div class="card_title title-white">
-            <p>technology</p>
+            <p onclick="filterBlog('tech')">Technology</p>
           </div>
         </div>
-          
-          <div class="card">
+
+        <div class="card" name="entertainment">
           <div class="card_image">
-            <img src="https://media.giphy.com/media/LwIyvaNcnzsD6/giphy.gif" />
-            </div>
+            <img src="images/entertainment.png" />
+          </div>
           <div class="card_title title-white">
-            <p>entertainment </p>
+            <p onclick="filterBlog('entertainment')">Entertainment</p>
           </div>
-          </div>
-        
         </div>
-        
+      </div>
     </div>
+    <!-- filter-links -->
     <div class="projcard-container right">
-      <div class="projcard projcard-blue">
+      <div class="projcard projcard-blue " data-category="tech">
         <div class="projcard-innerbox">
-          <img class="projcard-img" src="https://picsum.photos/800/600?image=1041" />
+          <img
+            class="projcard-img"
+            src="https://picsum.photos/800/600?image=1041"
+          />
           <div class="projcard-textbox">
-            <div class="projcard-title">Card Title</div>
+            <div class="projcard-title">tech card</div>
             <div class="projcard-bar"></div>
-            <div class="projcard-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Odio vitae amet dolore fuga. Corrupti enim molestias impedit. Cupiditate quam dolorum vero facilis nostrum. Exercitationem blanditiis minima accusantium doloribus explicabo velit. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Facilis illum labore eum. Error, cupiditate odio porro inventore vel sint accusamus reprehenderit aliquam esse repudiandae recusandae, rem, omnis officia ab facilis. </div>
+            <div class="projcard-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Lorem, ipsum dolor sit
+              amet consectetur adipisicing elit. Odio vitae amet dolore fuga.
+              Corrupti enim molestias impedit. Cupiditate quam dolorum vero
+              facilis nostrum. Exercitationem blanditiis minima accusantium
+              doloribus explicabo velit. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Facilis illum labore eum. Error, cupiditate odio
+              porro inventore vel sint accusamus reprehenderit aliquam esse
+              repudiandae recusandae, rem, omnis officia ab facilis.
+            </div>
           </div>
         </div>
       </div>
-      
-      <div class="projcard projcard-red">
+
+      <div class="projcard projcard-red " data-category="food">
         <div class="projcard-innerbox">
-          <img class="projcard-img" src="https://picsum.photos/800/600?image=1080" />
+          <img
+            class="projcard-img"
+            src="https://picsum.photos/800/600?image=1080"
+          />
           <div class="projcard-textbox">
-            <div class="projcard-title">That's Another Card</div>
+            <div class="projcard-title">food Card</div>
             <div class="projcard-bar"></div>
-            <div class="projcard-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</div>
+            <div class="projcard-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
+              sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </div>
           </div>
         </div>
       </div>
-      
-      <div class="projcard projcard-green">
+
+      <div class="projcard projcard-green " data-category="travel">
         <div class="projcard-innerbox">
-          <img class="projcard-img" src="https://picsum.photos/800/600?image=1039" />
+          <img
+            class="projcard-img"
+            src="https://picsum.photos/800/600?image=1039"
+          />
           <div class="projcard-textbox">
-            <div class="projcard-title">And a Third Card</div>
+            <div class="projcard-title">Travel Card</div>
             <div class="projcard-bar"></div>
-            <div class="projcard-description">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident. Lorem, ipsum dolor sit amet consectetur adipisicing elit. Rerum facere sint nostrum labore numquam amet voluptatibus explicabo quis illo quia ullam aliquam impedit error fugiat repudiandae officiis, eius rem doloribus accusamus atque eum. Aut debitis cum distinctio maxime quia pariatur ea eligendi quae excepturi obcaecati officia incidunt facere autem nostrum, inventore labore harum explicabo rerum! Id eveniet atque ipsa doloribus. Deleniti dolorem magni, blanditiis unde sint eius tempora ducimus illo, quas, temporibus voluptatibus adipisci corrupti ut facilis repellendus necessitatibus nesciunt ratione fuga. Alias obcaecati facere rem quisquam in corrupti fugit harum sunt distinctio, voluptatem, deserunt laboriosam, facilis officia ratione illum! </div>
+            <div class="projcard-description">
+              Duis aute irure dolor in reprehenderit in voluptate velit esse
+              cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
+              cupidatat non proident. Lorem, ipsum dolor sit amet consectetur
+              adipisicing elit. Rerum facere sint nostrum labore numquam amet
+              voluptatibus explicabo quis illo quia ullam aliquam impedit error
+              fugiat repudiandae officiis, eius rem doloribus accusamus atque
+              eum. Aut debitis cum distinctio maxime quia pariatur ea eligendi
+              quae excepturi obcaecati officia incidunt facere autem nostrum,
+              inventore labore harum explicabo rerum! Id eveniet atque ipsa
+              doloribus. Deleniti dolorem magni, blanditiis unde sint eius
+              tempora ducimus illo, quas, temporibus voluptatibus adipisci
+              corrupti ut facilis repellendus necessitatibus nesciunt ratione
+              fuga. Alias obcaecati facere rem quisquam in corrupti fugit harum
+              sunt distinctio, voluptatem, deserunt laboriosam, facilis officia
+              ratione illum!
+            </div>
           </div>
         </div>
       </div>
-      
-      <div class="projcard projcard-customcolor" style="--projcard-color: #F5AF41;">
+
+      <div
+        class="projcard projcard-customcolor "
+        style="--projcard-color: #f5af41"
+        data-category="entertainment"
+      >
         <div class="projcard-innerbox">
-          <img class="projcard-img" src="https://picsum.photos/800/600?image=943" />
+          <img
+            class="projcard-img"
+            src="https://picsum.photos/800/600?image=943"
+          />
           <div class="projcard-textbox">
-            <div class="projcard-title">Last Card</div>
+            <div class="projcard-title">Entertainment Card</div>
             <div class="projcard-bar"></div>
-            <div class="projcard-description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</div>
+            <div class="projcard-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
+              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
+              enim ad minim veniam, quis nostrud exercitation ullamco laboris
+              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+              reprehenderit in voluptate velit esse cillum dolore eu fugiat
+              nulla pariatur.
+            </div>
           </div>
         </div>
       </div>

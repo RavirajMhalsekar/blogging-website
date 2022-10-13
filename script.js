@@ -1,6 +1,6 @@
 const items = document.querySelectorAll(".nav-item");
 const ind = document.querySelector(".indicator");
-const cards = document.querySelectorAll(".cards");
+const cardsList = document.querySelectorAll(".card p");
 const colorPallette = [
   { background: "#264653", foreground: "#ffffff" },
   { background: "#f4a261", foreground: "#000000" },
@@ -34,11 +34,28 @@ items.forEach((item, index) => {
   });
 });
 
-document.querySelectorAll(".projcard-description").forEach(function (box) {
-  $clamp(box, { clamp: 6 });
+cardsList.forEach((item)=>{
+  item.addEventListener("click",(e)=>{
+    cardsList.forEach((item)=> item.classList.remove("active-card"));
+    e.target.classList.add("active-card");
+  });
 });
+var key = 'all';
+filterBlog(key);
 
-cards.addEventListener("click",(e)=>{
-  cards.forEach((cards) => cards.classList.remove("active-card"));
-  e.target.classList.add("active-card");
-});
+function filterBlog(key){
+  const blogs = document.querySelectorAll(".projcard");
+  blogs.forEach((item) =>{ 
+    item.classList.remove("active");
+    item.classList.add("hide");
+  });
+  blogs.forEach((blog)=>{
+    var dataCategory = blog.getAttribute('data-category');
+    // console.log("data = " + dataCategory);
+    if(dataCategory == key || key == 'all'){
+      blog.classList.remove("hide");
+      blog.classList.add("active");
+    }
+  });
+  
+}
