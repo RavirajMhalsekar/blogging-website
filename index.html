@@ -6,7 +6,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>blogging website</title>
     <link rel="stylesheet" href="style.css" type="text/css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
   </head>
 
   <body>
@@ -30,20 +33,22 @@
 
     <!-- blog section start -->
     <!-- filter-links -->
+
     <div class="filter-links left hide">
       <div class="cards-list">
         <div class="card" name="all">
           <div class="card_image">
-            <img src="images/allpost.jpg" />
+            <img src="images/allpost.jpg" onclick="filterBlog('all',0)" />
           </div>
-          <div class="card_title title-white" >
+          <div class="card_title title-white">
             <p class="active-card" onclick="filterBlog('all',0)">All Posts</p>
           </div>
         </div>
 
         <div class="card" name="food">
           <div class="card_image">
-            <img  src="images/food.jpg" /></div>
+            <img src="images/food.jpg" onclick="filterBlog('food',1)" />
+          </div>
           <div class="card_title title-white">
             <p onclick="filterBlog('food',1)">Food</p>
           </div>
@@ -51,7 +56,7 @@
 
         <div class="card" name="travel">
           <div class="card_image">
-            <img src="images/travel.jpg" />
+            <img src="images/travel.jpg" onclick="filterBlog('travel',2)" />
           </div>
           <div class="card_title title-white">
             <p onclick="filterBlog('travel',2)">Travel</p>
@@ -60,7 +65,7 @@
 
         <div class="card" name="tech">
           <div class="card_image">
-            <img src="images/tech.jpg" />
+            <img src="images/tech.jpg" onclick="filterBlog('tech',3)" />
           </div>
           <div class="card_title title-white">
             <p onclick="filterBlog('tech',3)">Technology</p>
@@ -69,7 +74,7 @@
 
         <div class="card" name="entertainment">
           <div class="card_image">
-            <img src="images/entertainment.png" />
+            <img src="images/entertainment.png" onclick="filterBlog('entertainment',4)" />
           </div>
           <div class="card_title title-white">
             <p onclick="filterBlog('entertainment',4)">Entertainment</p>
@@ -79,7 +84,7 @@
     </div>
     <!-- filter-links -->
     <div class="projcard-container right hide">
-      <div class="projcard projcard-blue " data-category="tech">
+      <div class="projcard projcard-blue" data-category="tech">
         <div class="projcard-innerbox">
           <img
             class="projcard-img"
@@ -105,7 +110,7 @@
         </div>
       </div>
 
-      <div class="projcard projcard-red " data-category="food">
+      <div class="projcard projcard-red" data-category="food">
         <div class="projcard-innerbox">
           <img
             class="projcard-img"
@@ -127,7 +132,7 @@
         </div>
       </div>
 
-      <div class="projcard projcard-green " data-category="travel">
+      <div class="projcard projcard-green" data-category="travel">
         <div class="projcard-innerbox">
           <img
             class="projcard-img"
@@ -149,7 +154,7 @@
       </div>
 
       <div
-        class="projcard projcard-customcolor "
+        class="projcard projcard-customcolor"
         style="--projcard-color: #f5af41"
         data-category="entertainment"
       >
@@ -176,8 +181,7 @@
     <!-- blog section end -->
 
     <!-- about section start -->
-    
-     
+
     <!-- about section end -->
     <!-- footer section start -->
 
@@ -192,7 +196,7 @@
         </ul>
       </div>
     </div>   -->
-    
+
     <!-- footer section end -->
 
     <script src="script.js"></script>
