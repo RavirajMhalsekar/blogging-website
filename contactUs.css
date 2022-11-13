@@ -4,8 +4,8 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    /* -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale; */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 
 :root {
@@ -20,14 +20,14 @@
 
 body {
     display: flex;
-    height: 200vh;
+    /* height: 200vh; */
     font-family: "Roboto", sans-serif;
     font-weight: 700;
     background-color: var(--body-color);
     z-index: 10;
 }
 
-ul {
+.navbar ul {
     list-style: none;
 }
 
@@ -122,7 +122,7 @@ ul {
     }
 }
 
-span {
+.header span {
     position: relative;
     display: inline-flex;
     width: 11.25rem;
@@ -131,7 +131,7 @@ span {
     perspective: 62.5rem;
 }
 
-span a {
+.header span a {
     font-size: 1.25rem;
     letter-spacing: 1px;
     transform-style: preserve-3d;
@@ -141,8 +141,8 @@ span a {
 
 }
 
-span a:before,
-span a:after {
+.header span a:before,
+.header span a:after {
     position: absolute;
     content: "Sign Up";
     height: 3.125rem;
@@ -155,22 +155,17 @@ span a:after {
     border-radius: 0.5;
 }
 
-span a:before {
+.header span a:before {
     color: #fff;
     background: #000;
     transform: rotateY(0deg) translateZ(25px);
 }
 
-span a:after {
+.header span a:after {
     color: #000;
     transform: rotateX(90deg) translateZ(25px);
 }
 
-span a:hover {
+.header span a:hover {
     transform: translateZ(-25px) rotateX(-90deg);
 }
-
-
-
-/* contact us */
-

@@ -13,7 +13,7 @@ The main objective of the Online Blogging System is to manage the details of Blo
 - It tracks all the information of Topic and Content.
 - Manage the information of Topic.
 - Shows the information and description of the Blogs. 
-- All the fields such as Blogs, Idea are validated and does not take invalid values .
+- All the fields such as Blogs, Idea are validated and does not take invalid values.
 - To increase efficiency of managing the Blogs, Topics.
 - Manage the information of Blogs and Content. 
 - Editing, adding and updating of Records is improved which results in proper resource management of Blogs data. 
