@@ -59,3 +59,11 @@ function filterBlog(key, _idx) {
     }
   });
 }
+
+
+var blogcards = document.querySelectorAll(".projcard.active");
+blogcards.forEach((card)=>{
+  card.addEventListener("click",(e)=>{
+    console.log(e.target.id);
+  })
+})

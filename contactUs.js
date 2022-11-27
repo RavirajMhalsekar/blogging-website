@@ -32,6 +32,3 @@ items.forEach((item, index) => {
     e.target.style.color = "#000000";
   });
 });
-
-
-
