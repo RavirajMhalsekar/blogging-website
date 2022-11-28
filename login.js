@@ -12,5 +12,5 @@ signInButton.addEventListener('click', () => {
 
 
 function openDashboard(){
-	window.open("dashboard.html","_self");
+	window.open("dashboard.php","_self");
 }

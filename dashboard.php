@@ -1,3 +1,34 @@
+<?php 
+  
+  $servername = "localhost";
+  $username = "root";
+  $password = "";
+  $database = "blogging_website";
+  $insert = false;
+  //  create a connection
+  $conn = mysqli_connect($servername,$username,$password,$database);
+
+  // die of connection was not successful
+  if(!$conn){
+    die("sorry we failed to connect: ". mysqli_connect_error());
+  }
+
+  if(isset($_GET['deleteMsg'])){
+    $sno = $_GET['deleteMsg'];
+
+    $sql = "DELETE FROM `contact_form` WHERE `contact_form`.`Sno` = '$sno'";
+    $result = mysqli_query($conn,$sql);
+    if($result){
+      // echo "The record has been deleted successfully! <br>";
+      $delete = true;
+    }else{
+      echo "The record was not been updated! " . mysqli_error($conn);
+    }
+  }
+?>
+
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +51,6 @@
         <header class="header" id="header">
             <div class="header_toggle">
                 <i class="bx bx-menu" id="header-toggle"></i>
-            </div>
-            <div class="header_img">
-                <img src="https://i.imgur.com/hczKIze.jpg" alt="" />
             </div>
         </header>
         <div class="l-navbar" id="nav-bar">
@@ -340,22 +368,25 @@
                     <div class="container m-3 mx-0">
 
                             <div class="card">
-                                <div class="card-body mb-2" style="background-color: #eaeef3;">
-                                  <h5 class="card-title text-primary">subject</h5>
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                  <p class="card-text"><small class="text-muted"> - rohit naik</small></p>
-                                  <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title="" title="">
-                                    <i class="material-icons">mark as read</i>
-                                </button>
-                                </div>
-                                <div class="card-body" style="background-color: #eaeef3;">
-                                  <h5 class="card-title text-primary">subject</h5>
-                                  <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
-                                  <p class="card-text"><small class="text-muted"> - rohit naik</small></p>
-                                <button type="button" rel="tooltip" class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title="" title="">
-                                    <i class="material-icons">mark as read</i>
-                                </button>
-                                </div>
+                                <?php 
+                                $sql = "SELECT * FROM `contact_form`";
+                                $result = mysqli_query($conn,$sql);
+                                $Sno = false;
+                                while($row = mysqli_fetch_assoc($result)){
+                                    echo "<div class='card-body mb-2' style='background-color: #eaeef3;'>";
+                                    echo "<h5 class='card-title text-primary'>".$row['subject']."</h5>";
+                                    echo "<p class='card-text'>".$row['message']."</p>";
+                                    echo "<p class='card-text'><small class='text-muted'> - ".$row['name']."(@".$row['email'].")</small></p>";
+                                    echo "<button id='d".$row['Sno']."' type='button' rel='tooltip' class=' delete btn btn-danger btn-round btn-just-icon btn-sm'>
+                                            <i class='material-icons' id='z".$row['Sno']."' >mark as read</i>
+                                            </button></div>";
+                                    $Sno = true;        
+                                }
+                                if(!$Sno){
+                                    echo "<p class='card-text text-center'> no messages yet</p>";
+                                }
+                                ?>
+                                
                                 
                             </div>
                         </div>
@@ -367,6 +398,18 @@
     </section>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
     <script src="dashboard.js"></script>
+    <script>
+        deletes = document.getElementsByClassName("delete");
+      Array.from(deletes).forEach((element)=>{
+        element.addEventListener("click",(e)=>{
+          sno = e.target.id.substr(1);
+        //   console.log("hello"+sno);
+          if(confirm('want to delete?')){
+            window.location = `/blogging_website/dashboard.php?deleteMsg=${sno}`;
+          }
+        })
+      })
+    </script>
 </body>
 
 </html>
