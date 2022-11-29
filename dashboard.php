@@ -12,7 +12,7 @@
   if(!$conn){
     die("sorry we failed to connect: ". mysqli_connect_error());
   }
-
+                                                                                                                                                            
   if(isset($_GET['deleteMsg'])){
     $sno = $_GET['deleteMsg'];
 
@@ -272,7 +272,7 @@
                             <!-- Grid column -->
                             <div class="col-md-12">
                                 <h2 class="pt-3 pb-4 text-center font-bold font-up deep-purple-text">
-                                   <strong>Blog Details</strong> 
+                                   <strong>User Details</strong> 
                                 </h2>
                             </div>
                             <!-- Grid column -->
@@ -293,59 +293,29 @@
                             <!--Table head-->
                             <!--Table body-->
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Mark</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
-                                    <td>
-                                        <button type="button" rel="tooltip"
-                                            class="btn btn-success btn-round btn-just-icon btn-sm"
-                                            data-original-title="" title="">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" rel="tooltip"
-                                            class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title=""
-                                            title="">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Jacob</td>
-                                    <td>Thornton</td>
-                                    <td>@fat</td>
-                                    <td>
-                                        <button type="button" rel="tooltip"
-                                            class="btn btn-success btn-round btn-just-icon btn-sm"
-                                            data-original-title="" title="">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" rel="tooltip"
-                                            class="btn btn-danger btn-round btn-just-icon btn-sm">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Larry</td>
-                                    <td>the Bird</td>
-                                    <td>@twitter</td>
-                                    <td>
-                                        <button type="button" rel="tooltip"
-                                            class="btn btn-success btn-round btn-just-icon btn-sm"
-                                            data-original-title="" title="">
-                                            <i class="material-icons">edit</i>
-                                        </button>
-                                        <button type="button" rel="tooltip"
-                                            class="btn btn-danger btn-round btn-just-icon btn-sm" data-original-title=""
-                                            title="">
-                                            <i class="material-icons">delete</i>
-                                        </button>
-                                    </td>
-                                </tr>
+                            <?php 
+                                $sql = "SELECT * FROM `login_details`";
+                                $result = mysqli_query($conn,$sql);
+                                $Sno = false;
+                                $count = 1;
+                                while($row = mysqli_fetch_assoc($result)){
+                                    echo "<tr>";
+                                    echo "<th>".$count."</th>";
+                                    echo "<td>".$row['name']."</td>";
+                                    echo "<td>".$row['email']."</td>";
+                                    echo "<td>".$row['password']."</td>";
+                                    echo "<td><button type='button' rel='tooltip' class='btn btn-success btn-round btn-just-icon btn-sm'>edit</button>
+                                    <button type='button' rel='tooltip' class='btn btn-danger btn-round btn-just-icon btn-sm'>delete</button>
+                                    </td>";
+                                    echo "</tr>";
+                                    $Sno = true;  
+                                    $count = $count+1;      
+                                }
+                                if(!$Sno){
+                                    echo "<p class='card-text text-center'> no users yet</p>";
+                                }
+                                ?>
+                                
                             </tbody>
                             <!--Table body-->
                         </table>

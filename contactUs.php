@@ -65,7 +65,7 @@
         <div class="indicator"></div>
       </div>
 
-      <span><a href="login.html" target="_blank"></a></span>
+      <span><a href="login.php" target="_blank"></a></span>
     </div>
   </header>
   <!-- navbar section end -->
