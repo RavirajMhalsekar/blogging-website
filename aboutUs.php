@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>blogging website</title>
-  <link rel="stylesheet" href="aboutUs.css">
+  <link rel="stylesheet" href="css/aboutUs.css">
   
 
   <script src="https://cdn.tailwindcss.com"></script>
@@ -35,10 +35,10 @@
   <!-- navbar section start -->
   <header>
     <div class="header">
-      <a class="navbar-brand" href="index.html">BLOGGERS.</a>
+      <a class="navbar-brand" href="index.php">BLOGGERS.</a>
       <div class="navbar">
         <ul class="main-nav">
-          <li class="nav-item "><a href="index.html">Home</a> </li>
+          <li class="nav-item "><a href="index.php">Home</a> </li>
           <li class="nav-item active"> About Us</li>
           <li class="nav-item"><a href="contactUs.php">Contact Us</a></li>
         </ul>
@@ -179,108 +179,12 @@
                         </div>
                     </div>
                     
-          
-
-
-
-
                 </div>
             </div>
         </div>
     </dh-component>
 </div>
-
-
-
-
-<!-- <section class="center">
-  <div class="container mx-auto py-8">
-
-    <div class="flex flex-col gap-4 mb-8 p-4">
-
-        <div class="text-purple-600 text-sm font-bold">Our team</div>
-
-        <div class="text-gray-900 text-4xl font-bold">Some of the people you'll be working with</div>
-
-        <div class="text-gray-600 text-lg">We're a 100% remote team spread all across the world. Join us!</div>
-
-    </div>
-
-    <div class="flex flex-wrap gap-20 p-4 cardslist">
-
-        <div class="card">
-
-            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
-
-            <div class="text-gray-900 text-lg font-bold">Olivia Rhye</div>
-
-            <div class="text-purple-600">Founder & CEO</div>
-            
-            <div class="text-gray-600">Former co-founder of Opendoor. Early staff at Spotify and Clearbit.</div>
-            
-            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
-                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <img src="https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
-
-            <div class="text-gray-900 text-lg font-bold">Phoenix Baker</div>
-
-            <div class="text-purple-600">Engineering Manager</div>
-            
-            <div class="text-gray-600">Lead engineering teams at Figma, Pitch, and Protocol Labs.</div>
-            
-            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
-                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-            </div>
-
-        </div>
-
-        <div class="card">
-
-            <img src="https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&dpr=3&h=750&w=1260" class="w-24 h-24 rounded-full object-cover transition duration-200 hover:scale-110">
-
-            <div class="text-gray-900 text-lg font-bold">Olivia Rhye</div>
-
-            <div class="text-purple-600">Founder & CEO</div>
-            
-            <div class="text-gray-600">Former co-founder of Opendoor. Early staff at Spotify and Clearbit.</div>
-            
-            <div class="flex items-center justify-center gap-3 mt-2 w-auto h-5 text-gray-600">
-                <i class="fa-brands fa-twitter fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                <i class="fa-brands fa-linkedin fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-                <i class="fa-brands fa-dribbble fa-lg cursor-pointer transition duration-200 hover:text-gray-400"></i>
-            </div>
-
-        </div>
-
-        
-
-        
-
-        
-
-        
-
-        
-
-        
-
-    </div>
-
-</div>
-</section> -->
-  
-
-  <script src="aboutUs.js"></script>
+  <script src="js/aboutUs.js"></script>
 </body>
 
 </html>

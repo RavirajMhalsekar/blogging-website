@@ -1,18 +1,14 @@
 <?php 
   
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $database = "blogging_website";
-  $insert = false;
-  //  create a connection
-  $conn = mysqli_connect($servername,$username,$password,$database);
-
-  // die of connection was not successful
-  if(!$conn){
-    die("sorry we failed to connect: ". mysqli_connect_error());
+  require 'php/connect_db.php';
+    
+  $deleteMessage = false;
+  $deleteUser = false;
+  $deleteblog = false;
+  if (isset($_FILES['my_image'])){
+    include 'php/upload.php';
   }
-                                                                                                                                                            
+
   if(isset($_GET['deleteMsg'])){
     $sno = $_GET['deleteMsg'];
 
@@ -20,7 +16,34 @@
     $result = mysqli_query($conn,$sql);
     if($result){
       // echo "The record has been deleted successfully! <br>";
-      $delete = true;
+        $deleteMessage = true;
+        header("Location: /blogging_website/dashboard.php#messages");
+    }else{
+      echo "The record was not been updated! " . mysqli_error($conn);
+    }
+  }
+  if(isset($_GET['deleteUser'])){
+    $sno = $_GET['deleteUser'];
+
+    $sql = "DELETE FROM `login_details` WHERE `login_details`.`Sno` = '$sno'";
+    $result = mysqli_query($conn,$sql);
+    if($result){
+      // echo "The record has been deleted successfully! <br>";
+      $deleteUser = true;
+      header("Location: /blogging_website/dashboard.php#userDetail");
+    }else{
+      echo "The record was not been updated! " . mysqli_error($conn);
+    }
+  }
+  if(isset($_GET['deleteBlog'])){
+    $sno = $_GET['deleteBlog'];
+
+    $sql = "DELETE FROM `blogs` WHERE `blogs`.`Sno` = '$sno'";
+    $result = mysqli_query($conn,$sql);
+    if($result){
+      // echo "The record has been deleted successfully! <br>";
+      $deleteblog = true;
+      header("Location: /blogging_website/dashboard.php#blogsDetails");
     }else{
       echo "The record was not been updated! " . mysqli_error($conn);
     }
@@ -37,12 +60,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Dashboard</title>
-    <link rel="stylesheet" href="dashboard.css" />
+    <link rel="stylesheet" href="css/dashboard.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" />
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.css" />
     
 </head>
 
@@ -77,17 +100,9 @@
                             <i class="bx bx-message-square-detail nav_icon"></i>
                             <span class="nav_name">Messages</span>
                         </a>
-                        <!-- <a href="#" class="nav_link">
-                            <i class="bx bx-bookmark nav_icon"></i>
-                            <span class="nav_name">Bookmark</span>
-                        </a>
-                        <a href="#" class="nav_link">
-                            <i class="bx bx-folder nav_icon"></i>
-                            <span class="nav_name">Files</span>
-                        </a> -->
                     </div>
                 </div>
-                <a href="index.html" class="nav_link">
+                <a href="login.php" class="nav_link">
                     <i class="bx bx-log-out nav_icon"></i>
                     <span class="nav_name">SignOut</span>
                 </a>
@@ -95,19 +110,35 @@
         </div>
     </section>
     <section>
+        
         <!--Container Main start-->
         <div class="pt-2 height-200 bg-light">
             <section id="create">
+                <?php 
+                if (isset($_GET['added'])){
+                    $added = $_GET['added'];
+                    echo "<div class='alert alert-success alert-dismissible fade show w-auto ' role='alert'>
+                    <strong>Blog created successfully!</strong>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                }else if (isset($_GET['error'])){
+                    $error = $_GET['error'];
+                    echo "<div class='alert alert-warning alert-dismissible fade show w-auto ' role='alert'>
+                    <strong>".$error."</strong>
+                    <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                    </div>";
+                }
+                ?>
                 <div class="card mb-5 mx-5">
                     <div class="card-body display-5">
-                        <h5 class="card-title"><strong>Create a own of your own</strong></h5>
+                        <h5 class="card-title"><strong>Create a blog of your own</strong></h5>
                         <!-- <p class="card-text">
                             With supporting text below as a natural lead-in to additional
                             content.
                         </p> -->
                         <button type="button" class="btn btn-primary btn-lg" data-mdb-toggle="modal"
-                            data-mdb-target="#exampleModal">
-                            create a blog
+                            data-mdb-target="#createModal">
+                            Create
                         </button>
                     </div>
                 </div>
@@ -115,7 +146,7 @@
                 <!-- Button trigger modal -->
 
                 <!-- Modal -->
-                <div class="modal top fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                <div class="modal top fade" id="createModal" tabindex="-1" aria-labelledby="createModalLabel"
                     aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
                     <div class="modal-dialog modal-lg">
                         <div class="modal-content">
@@ -125,43 +156,94 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <form action="" method="post" enctype="multipart/form-data">
+                                <form action="dashboard.php" method="post" enctype="multipart/form-data">
                                     <div class="form-group">
                                         <label>Title</label>
-                                        <input type="text" class="form-control" id="blogTitle"
+                                        <input type="text" name="title" class="form-control" id="blogTitle"
+                                            placeholder="title of blog" maxlength="20" />
+                                    </div>
+                                    <div class="my-3 form-group">
+                                        <label>Description</label>
+                                        <textarea type="text" name="description" class="form-control" id="blogDescription"
+                                            placeholder="title of blog" maxlength="500"></textarea>
+                                    </div>
+                                    <label>choose blog category</label>
+                                    <select class="form-select" name="type" id="blogCategory">
+                                        <option name="food" value="food">Food</option>
+                                        <option name="travel" value="travel">Travel</option>
+                                        <option name="tech" value="tech">Technology</option>
+                                        <option name="entertainment" value="entertainment">entertainment</option>
+                                      </select>
+                                        <div class="my-3 form-group">
+                                            <label>cover photo</label><br />
+                                            <input type="file" class="form-control-file" id="blogImage" 
+                                            name="my_image" />
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="reset" class="btn btn-secondary" data-mdb-dismiss="modal">
+                                                Close
+                                            </button>
+                                            <button type="submit" class="btn btn-primary">
+                                                create blog
+                                            </button>
+                                        </div>
+                                </form>
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <!-- blog edit start -->
+                <div class="modal top fade" id="editModal" tabindex="-1" aria-labelledby="editModalLabel"
+                    aria-hidden="true" data-mdb-backdrop="true" data-mdb-keyboard="true">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h4>edit</h4>
+                                <button type="button" class="btn-close" data-mdb-dismiss="modal"
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form action="dashboard.php" method="post" enctype="multipart/form-data">
+                                    <div class="form-group">
+                                        <label>Title</label>
+                                        <input type="hidden" name="snoEdit" id="snoEdit">
+                                        <input type="text" name="title" class="form-control" id="blogTitleEdit"
                                             placeholder="title of blog" />
                                     </div>
                                     <div class="my-3 form-group">
                                         <label>Description</label>
-                                        <input type="text" class="form-control" id="blogTitle"
-                                            placeholder="title of blog" />
+                                        <textarea type="text" name="description" class="form-control" id="blogDescriptionEdit"
+                                            placeholder="title of blog" ></textarea>
                                     </div>
                                     <label>choose blog category</label>
-                                    <select class="form-select" aria-label="Default select example">
-                                        <option value="Food">Food</option>
-                                        <option value="Travel">Travel</option>
-                                        <option value="Tech">Technology</option>
-                                        <option value="entertainment">entertainment</option>
+                                    <select class="form-select" name="type" id="blogCategoryEdit">
+                                        <option name="food" value="food">Food</option>
+                                        <option name="travel" value="travel">Travel</option>
+                                        <option name="tech" value="tech">Technology</option>
+                                        <option name="entertainment" value="entertainment">entertainment</option>
                                       </select>
-                                    <form>
-                                        <div class="my-3 form-group">
-                                            <label>cover photo</label><br />
-                                            <input type="file" class="form-control-file" id="exampleFormControlFile1" />
-                                        </div>
-                                    </form>
+                                    <div class="modal-footer">
+                                        <button type="reset" class="btn btn-secondary" data-mdb-dismiss="modal">
+                                            Close
+                                        </button>
+                                        <button type="submit" class="btn btn-primary">
+                                            create blog
+                                        </button>
+                                    </div>
                                 </form>
                             </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-mdb-dismiss="modal">
-                                    Close
-                                </button>
-                                <button type="submit" class="btn btn-primary">
-                                    create blog
-                                </button>
-                            </div>
+                            
                         </div>
                     </div>
                 </div>
+                <!-- blog edit end -->
+                
+
+
+
+
             </section>
 
             <section id="blogsDetails" class="card mb-5 mx-5">
@@ -175,91 +257,40 @@
                     <!-- Grid column -->
                 </div>
                 <div class="container">
+                <?php 
+                        if($deleteblog){
+                            echo "<div class='alert alert-success alert-dismissible fade show w-auto' role='alert'>
+                            <strong>Blog Deleted Successfully!</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
+                        }
+                    ?>
                     <div class="row">
-                        <div class="col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
-                                    alt="" class="card-img-top" />
-                                <div class="card-body">
-                                    <h5 class="card-title">Sunset</h5>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Ut eum similique repellat a laborum, rerum voluptates
-                                        ipsam eos quo tempore iusto dolore modi dolorum in
-                                        pariatur. Incidunt repellendus praesentium quae!
-                                    </p>
-                                    <button type="submit" class="btn btn-outline-success btn-sm">
-                                        Edit
-                                    </button>
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                        Delete
-                                    </button>
+                        <?php 
+                            $sql = "SELECT * FROM `blogs`";
+                            $result = mysqli_query($conn,$sql);
+                            $Sno = false;
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo "<div class='col-lg-4 mb-4'>
+                                <div class='card'>
+                                    <img class='card-img' src='uploads/".$row['image_url']."'
+                                        alt='image-cover' class='card-img-top' />
+                                    <div class='card-body'>
+                                        <h5 class='card-title'>".$row['title']."</h5>
+                                        <strong class='card-type' style='color: #4723D9;'>".$row['type']."</strong>
+                                        <p class='card-text'>
+                                            ".$row['description']."
+                                        </p>
+                                        <button id='p".$row['Sno']."' type='button' class='editBlog btn btn-outline-success btn-sm' data-mdb-toggle='modal' data-mdb-target='#editModal'>Edit
+                                        </button>
+                                        <button id='r".$row['Sno']."' type='submit' class=' deleteBlog btn btn-outline-danger btn-sm'>
+                                            Delete
+                                        </button>
+                                    </div>
                                 </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="https://images.unsplash.com/photo-1516214104703-d870798883c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60"
-                                    alt="" class="card-img-top" />
-                                <div class="card-body">
-                                    <h5 class="card-title">Sunset</h5>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Ut eum similique repellat a laborum, rerum voluptates
-                                        ipsam eos quo tempore iusto dolore modi dolorum in
-                                        pariatur. Incidunt repellendus praesentium quae!
-                                    </p>
-                                    <button type="submit" class="btn btn-outline-success btn-sm">
-                                        Edit
-                                    </button>
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="https://images.unsplash.com/photo-1516214104703-d870798883c5?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=60"
-                                    alt="" class="card-img-top" />
-                                <div class="card-body">
-                                    <h5 class="card-title">Sunset</h5>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Ut eum similique repellat a laborum, rerum voluptates
-                                        ipsam eos quo tempore iusto dolore modi dolorum in
-                                        pariatur. Incidunt repellendus praesentium quae!
-                                    </p>
-                                    <button type="submit" class="btn btn-outline-success btn-sm">
-                                        Edit
-                                    </button>
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-4 mb-4">
-                            <div class="card">
-                                <img src="https://images.unsplash.com/photo-1477862096227-3a1bb3b08330?ixlib=rb-1.2.1&auto=format&fit=crop&w=700&q=60"
-                                    alt="" class="card-img-top" />
-                                <div class="card-body">
-                                    <h5 class="card-title">Sunset</h5>
-                                    <p class="card-text">
-                                        Lorem ipsum dolor sit amet consectetur, adipisicing elit.
-                                        Ut eum similique repellat a laborum, rerum voluptates
-                                        ipsam eos quo tempore iusto dolore modi dolorum in
-                                        pariatur. Incidunt repellendus praesentium quae!
-                                    </p>
-                                    <button type="submit" class="btn btn-outline-success btn-sm">
-                                        Edit
-                                    </button>
-                                    <button type="submit" class="btn btn-outline-danger btn-sm">
-                                        Delete
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
+                            </div>";
+                            }
+                        ?>
                     </div>
                 </div>
             </section>
@@ -279,6 +310,14 @@
                         </div>
                         <!-- Grid row -->
                         <!--Table-->
+                        <?php 
+                        if($deleteUser){
+                            echo "<div class='alert alert-success alert-dismissible fade show w-auto' role='alert'>
+                            <strong>User Deleted Successfully!</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
+                        }
+                        ?>
                         <table class="table table-striped text-center">
                             <!--Table head-->
                             <thead>
@@ -304,8 +343,8 @@
                                     echo "<td>".$row['name']."</td>";
                                     echo "<td>".$row['email']."</td>";
                                     echo "<td>".$row['password']."</td>";
-                                    echo "<td><button type='button' rel='tooltip' class='btn btn-success btn-round btn-just-icon btn-sm'>edit</button>
-                                    <button type='button' rel='tooltip' class='btn btn-danger btn-round btn-just-icon btn-sm'>delete</button>
+                                    echo "<td>
+                                    <button id='u".$row['Sno']."' type='button' rel='tooltip' class='deleteUser btn btn-danger btn-round btn-just-icon btn-sm'>delete User</button>
                                     </td>";
                                     echo "</tr>";
                                     $Sno = true;  
@@ -336,9 +375,18 @@
                         <!-- Grid column -->
                     </div>
                     <div class="container m-3 mx-0">
-
+                    <?php 
+                        if($deleteMessage){
+                            echo "<div class='alert alert-success alert-dismissible fade show w-auto' role='alert'>
+                            <strong>message Deleted Successfully!</strong>
+                            <button type='button' class='btn-close' data-bs-dismiss='alert' aria-label='Close'></button>
+                            </div>";
+                        }
+                    ?>
+                    
                             <div class="card">
-                                <?php 
+                                <?php
+
                                 $sql = "SELECT * FROM `contact_form`";
                                 $result = mysqli_query($conn,$sql);
                                 $Sno = false;
@@ -347,7 +395,7 @@
                                     echo "<h5 class='card-title text-primary'>".$row['subject']."</h5>";
                                     echo "<p class='card-text'>".$row['message']."</p>";
                                     echo "<p class='card-text'><small class='text-muted'> - ".$row['name']."(@".$row['email'].")</small></p>";
-                                    echo "<button id='d".$row['Sno']."' type='button' rel='tooltip' class=' delete btn btn-danger btn-round btn-just-icon btn-sm'>
+                                    echo "<button id='d".$row['Sno']."' type='button' rel='tooltip' class=' deleteMsg btn btn-danger btn-round btn-just-icon btn-sm'>
                                             <i class='material-icons' id='z".$row['Sno']."' >mark as read</i>
                                             </button></div>";
                                     $Sno = true;        
@@ -367,19 +415,57 @@
         <!--Container Main end-->
     </section>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"></script>
-    <script src="dashboard.js"></script>
+    <!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+    <script src="js/dashboard.js"></script>
     <script>
-        deletes = document.getElementsByClassName("delete");
-      Array.from(deletes).forEach((element)=>{
-        element.addEventListener("click",(e)=>{
-          sno = e.target.id.substr(1);
-        //   console.log("hello"+sno);
-          if(confirm('want to delete?')){
-            window.location = `/blogging_website/dashboard.php?deleteMsg=${sno}`;
-          }
+
+        deletesMsg = document.getElementsByClassName("deleteMsg");
+        Array.from(deletesMsg).forEach((element)=>{
+                element.addEventListener("click",(e)=>{
+                sno = e.target.id.substr(1);
+                //   console.log("hello"+sno);
+                if(confirm('want to delete?')){
+                    window.location = `/blogging_website/dashboard.php?deleteMsg=${sno}`;
+                }
+            })
         })
-      })
+        deletesUser = document.getElementsByClassName("deleteUser");
+        Array.from(deletesUser).forEach((element)=>{
+                element.addEventListener("click",(e)=>{
+                sno = e.target.id.substr(1);
+                //   console.log("hello "+sno);
+                if(confirm('want to delete?')){
+                    window.location = `/blogging_website/dashboard.php?deleteUser=${sno}`;
+                }
+            })
+        })
+        deletesBlog = document.getElementsByClassName("deleteBlog");
+        Array.from(deletesBlog).forEach((element)=>{
+                element.addEventListener("click",(e)=>{
+                sno = e.target.id.substr(1);
+                //   console.log("hello "+sno);
+                if(confirm('want to delete?')){
+                    window.location = `/blogging_website/dashboard.php?deleteBlog=${sno}`;
+                }
+            })
+        })
+
+        edits = document.getElementsByClassName("editBlog");
+        Array.from(edits).forEach((element)=>{
+            element.addEventListener("click",(e)=>{
+            title = e.target.parentNode.getElementsByClassName("card-title")[0].innerText;
+            description = e.target.parentNode.getElementsByClassName("card-text")[0].innerText;
+            type = e.target.parentNode.getElementsByClassName("card-type")[0].innerText;
+            imgSrc = e.target.parentNode.parentNode.getElementsByClassName("card-img")[0].getAttribute('src');
+            snoEdit.value = e.target.id.substr(1);
+            blogTitleEdit.value = title;
+            blogDescriptionEdit.value = description;
+            blogCategoryEdit.value = type;
+            })
+        })
     </script>
 </body>
 
 </html>
+

@@ -1,18 +1,8 @@
 <?php 
   
-  $servername = "localhost";
-  $username = "root";
-  $password = "";
-  $database = "blogging_website";
+  require 'php/connect_db.php';
+
   $insert = false;
-  //  create a connection
-  $conn = mysqli_connect($servername,$username,$password,$database);
-
-  // die of connection was not successful
-  if(!$conn){
-    die("sorry we failed to connect: ". mysqli_connect_error());
-  }
-
   if($_SERVER['REQUEST_METHOD'] == 'POST'){
     $name = $_POST['name'];
     $email = $_POST['email'];
@@ -38,7 +28,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>blogging website</title>
-  <link rel="icon" type="image/png" href="contactForm/images/icons/favicon.ico" />
+  <!-- <link rel="icon" type="image/png" href="contactForm/images/icons/favicon.ico" /> -->
   <link rel="stylesheet" type="text/css" href="contactForm/vendor/bootstrap/css/bootstrap.min.css">
   <link rel="stylesheet" type="text/css" href="contactForm/fonts/font-awesome-4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" type="text/css" href="contactForm/vendor/animate/animate.css">
@@ -46,7 +36,7 @@
   <link rel="stylesheet" type="text/css" href="contactForm/vendor/select2/select2.min.css">
   <link rel="stylesheet" type="text/css" href="contactForm/css/util.css">
   <link rel="stylesheet" type="text/css" href="contactForm/css/main.css">
-  <link rel="stylesheet" href="contactUs.css">
+  <link rel="stylesheet" href="css/contactUs.css">
 
 
 </head>
@@ -55,11 +45,11 @@
   <!-- navbar section start -->
   <header>
     <div class="header">
-      <a class="navbar-brand" href="index.html">BLOGGERS.</a>
+      <a class="navbar-brand" href="index.php">BLOGGERS.</a>
       <div class="navbar">
         <ul class="main-nav">
-          <li class="nav-item "><a href="index.html">Home</a> </li>
-          <li class="nav-item"><a href="aboutUs.html">About Us</a></li>
+          <li class="nav-item "><a href="index.php">Home</a> </li>
+          <li class="nav-item"><a href="aboutUs.php">About Us</a></li>
           <li class="nav-item active">Contact Us</li>
         </ul>
         <div class="indicator"></div>
@@ -142,7 +132,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
     crossorigin="anonymous"></script>
-  <script src="contactUs.js"></script>
+  <script src="js/contactUs.js"></script>
 </body>
 
 </html>

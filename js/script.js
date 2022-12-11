@@ -34,6 +34,7 @@ items.forEach((item, index) => {
   });
 });
 
+
 cardsList.forEach((item) => {
   item.addEventListener("click", (e) => {
     cardsList.forEach((item) => item.classList.remove("active-card"));
@@ -59,11 +60,3 @@ function filterBlog(key, _idx) {
     }
   });
 }
-
-
-var blogcards = document.querySelectorAll(".projcard.active");
-blogcards.forEach((card)=>{
-  card.addEventListener("click",(e)=>{
-    console.log(e.target.id);
-  })
-})
