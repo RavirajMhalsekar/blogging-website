@@ -71,7 +71,7 @@
                             <div class="px-6 mt-16">
                                 <h1 class="font-bold text-3xl text-center mb-1">Raviraj Mhalsekar</h1>
                                 <p class="text-purple-600 text-sm text-center">Full Stack Developer</p>
-                                <p class="text-center text-gray-600 text-base pt-3 font-normal">A UX designer is the voice of the customer. Our job is to look beyond the business goals. We don't just experience user interface but also questions it.</p>
+                                <p class="text-center text-gray-600 text-base pt-3 font-normal">Full Stack Developers have to have some skills in a wide variety of coding niches, from Front End to server side, from databases to graphic design and UI/UX management in order to do their job well.</p>
                                 <div class="w-full flex justify-center pt-5 pb-5">
                                     <a href="javascript:void(0)" class="mx-5">
                                         <div aria-label="Github" role="img">

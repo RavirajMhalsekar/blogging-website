@@ -10,13 +10,7 @@
 }
 
 :root {
-    /* --body-color: #ecf0f1bf; */
-    --body-color: #d2d7d8b3;
-    --color-primary: #f4faf8;
-    --color-accent: #02be86;
-    --color-black: #051c15;
-    --color-white: #fff;
-    --color-light-green: #e1f9f1;
+    --body-color: #9c9c9cb3;
     --header-color: #fafbfb;
 }
 

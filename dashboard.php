@@ -9,17 +9,29 @@
     include 'php/upload.php';
   }
 
+  if(isset($_POST['snoEdit'])){
+    $sno = $_POST['snoEdit'];
+    $description = $_POST['descriptionEdit'];
+    $title = $_POST['titleEdit'];
+    $type = $_POST['typeEdit'];
+    $sql = "UPDATE `blogs` SET `title` = '$title', `description` = '$description', `type` = '$type' WHERE `blogs`.`Sno` = '$sno'";
+    $result = mysqli_query($conn,$sql);
+    if($result){
+        header("Location: /blogging_website/dashboard.php#blogsDetails");
+    }else{
+      echo "The record was not been updated! " . mysqli_error($conn);
+    }
+  }
+
   if(isset($_GET['deleteMsg'])){
     $sno = $_GET['deleteMsg'];
 
     $sql = "DELETE FROM `contact_form` WHERE `contact_form`.`Sno` = '$sno'";
     $result = mysqli_query($conn,$sql);
     if($result){
-      // echo "The record has been deleted successfully! <br>";
-        $deleteMessage = true;
         header("Location: /blogging_website/dashboard.php#messages");
     }else{
-      echo "The record was not been updated! " . mysqli_error($conn);
+        echo "The record was not been updated! " . mysqli_error($conn);
     }
   }
   if(isset($_GET['deleteUser'])){
@@ -209,16 +221,16 @@
                                     <div class="form-group">
                                         <label>Title</label>
                                         <input type="hidden" name="snoEdit" id="snoEdit">
-                                        <input type="text" name="title" class="form-control" id="blogTitleEdit"
+                                        <input type="text" name="titleEdit" class="form-control" id="blogTitleEdit"
                                             placeholder="title of blog" />
                                     </div>
                                     <div class="my-3 form-group">
                                         <label>Description</label>
-                                        <textarea type="text" name="description" class="form-control" id="blogDescriptionEdit"
+                                        <textarea type="text" name="descriptionEdit" class="form-control" id="blogDescriptionEdit"
                                             placeholder="title of blog" ></textarea>
                                     </div>
                                     <label>choose blog category</label>
-                                    <select class="form-select" name="type" id="blogCategoryEdit">
+                                    <select class="form-select" name="typeEdit" id="blogCategoryEdit">
                                         <option name="food" value="food">Food</option>
                                         <option name="travel" value="travel">Travel</option>
                                         <option name="tech" value="tech">Technology</option>
