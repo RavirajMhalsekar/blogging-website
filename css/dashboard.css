@@ -83,7 +83,9 @@ a {
     justify-content: space-between;
     overflow: hidden
 }
-
+.fixed{
+    max-height: 20rem;
+}
 .nav_logo,
 .nav_link {
     display: grid;

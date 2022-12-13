@@ -172,7 +172,7 @@
                                     <div class="form-group">
                                         <label>Title</label>
                                         <input type="text" name="title" class="form-control" id="blogTitle"
-                                            placeholder="title of blog" maxlength="20" />
+                                            placeholder="title of blog" maxlength="40" />
                                     </div>
                                     <div class="my-3 form-group">
                                         <label>Description</label>
@@ -241,7 +241,7 @@
                                             Close
                                         </button>
                                         <button type="submit" class="btn btn-primary">
-                                            create blog
+                                            Edit blog
                                         </button>
                                     </div>
                                 </form>
@@ -285,7 +285,7 @@
                             while($row = mysqli_fetch_assoc($result)){
                                 echo "<div class='col-lg-4 mb-4'>
                                 <div class='card'>
-                                    <img class='card-img' src='uploads/".$row['image_url']."'
+                                    <img class='card-img mh-100' src='uploads/".$row['image_url']."'
                                         alt='image-cover' class='card-img-top' />
                                     <div class='card-body'>
                                         <h5 class='card-title'>".$row['title']."</h5>

@@ -1,11 +1,3 @@
-var blogcards = document.querySelectorAll(".projcard.active");
-blogcards.forEach((card) => {
-  card.addEventListener("click", (e) => {
-    console.log("id = " + e.target.id);
-    console.log("trigger = " + e.target.getAttribute("data-modal-trigger"));
-  });
-});
-
 const buttons = document.querySelectorAll("[data-modal-trigger]");
 buttons.forEach((button)=>{
     button.addEventListener("click", () => {

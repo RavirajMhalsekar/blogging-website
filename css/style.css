@@ -10,7 +10,7 @@
 }
 
 :root {
-    --body-color: #9c9c9cb3;
+    --body-color: #bfbfbfb3;
     --header-color: #fafbfb;
 }
 
@@ -172,7 +172,6 @@ span a:hover {
 
 /* main code */
 .left {
-    /* background-color: rgba(0, 0, 0, .025); */
     border-right: 1px solid rgba(0, 0, 0, .05);
     float: left;
     height: 100%;
@@ -515,14 +514,6 @@ span a:hover {
     text-decoration: underline;
 }
 
-
-
-
-/* @media all and (max-width: 500px) {
-    .card-list {
-        flex-direction: column;
-    }
-} */
 
 
 /* modal */
